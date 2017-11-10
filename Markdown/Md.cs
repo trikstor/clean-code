@@ -9,9 +9,4 @@ namespace Markdown
 			return markdown; //TODO
 		}
 	}
-
-	[TestFixture]
-	public class Md_ShouldRender
-	{
-	}
 }

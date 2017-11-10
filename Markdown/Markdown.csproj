@@ -47,8 +47,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BlocksDependencies.cs" />
+    <Compile Include="Condition.cs" />
+    <Compile Include="Environ.cs" />
+    <Compile Include="EnvironCondition.cs" />
+    <Compile Include="EnvironConditions.cs" />
+    <Compile Include="MarkdownParser.cs" />
     <Compile Include="Md.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="ReplacingBlocks\DoubleUnderline.cs" />
+    <Compile Include="ReplacingBlocks\Header.cs" />
+    <Compile Include="ReplacingBlocks\HorizontalSeparator.cs" />
+    <Compile Include="ReplacingBlocks\IReplaceable.cs" />
+    <Compile Include="ReplacingBlocks\SingleUnderline.cs" />
+    <Compile Include="Tests\BlocksDependenciesShould.cs" />
+    <Compile Include="Tests\EnvironShould.cs" />
+    <Compile Include="Tests\MdShould.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
