@@ -12,7 +12,7 @@ namespace Markdown
         {
             
         }
-        private bool CompareConditions(string inputOutput, int indexOfsymbol)
+        private bool CompareConditions(string input, int indexOfsymbol)
         {
 
         }

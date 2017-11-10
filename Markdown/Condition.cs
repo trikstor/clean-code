@@ -12,8 +12,6 @@
         }
         public Condition()
         {
-            Char = 'c';
-            Equality = true;
         }
     }
 }

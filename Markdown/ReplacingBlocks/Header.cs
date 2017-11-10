@@ -18,7 +18,7 @@ namespace Markdown
 
         }
 
-        public void Replace(ref string inputOutput, int indexOfsymbol)
+        public string Replace(string input, int indexOfsymbol)
         {
 
         }

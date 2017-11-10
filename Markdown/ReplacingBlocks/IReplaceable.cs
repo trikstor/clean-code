@@ -6,6 +6,6 @@
         Environ EnvironOfReplace { get; }
         string[] Substitute { get; }
 
-        void Replace(ref string inputOutput, int indexOfsymbol);
+        string Replace(string input, int indexOfsymbol);
     }
 }

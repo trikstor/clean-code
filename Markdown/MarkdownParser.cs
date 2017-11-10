@@ -9,12 +9,22 @@ namespace Markdown
         {
             
         }
-        private bool СheckReplacingPossibility(ref string inputOutput, int indexOfsymbol)
+        private bool СheckReplacingPossibility(string input, int indexOfsymbol)
         {
 
         }
 
-        public void Parse(ref string inputOutput)
+        private bool СheckShielding(string input, int indexOfsymbol)
+        {
+
+        }
+
+        private string RemoveShielding(string input, int indexOfShieldingSymbol)
+        {
+            
+        }
+
+        public string Parse(string input)
         {
 
         }

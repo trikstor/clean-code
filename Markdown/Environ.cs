@@ -12,11 +12,11 @@ namespace Markdown
 
         }
 
-        public bool CheckEnviron(string inputOutput, int indexOfsymbol, bool isOpenConditions)
+        public bool CheckEnviron(string input, int indexOfsymbol, bool isOpenConditions)
         {
         }
 
-        private bool CheckBoundaryEnviron(string inputOutput, int indexOfsymbol)
+        private bool CheckBoundaryEnviron(string input, int indexOfsymbol)
         {
 
         }
