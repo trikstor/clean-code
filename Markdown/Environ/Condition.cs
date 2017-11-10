@@ -2,12 +2,12 @@
 {
     public class Condition
     {
-        public char Char { get; }
+        public MarkdownSymbols Symbol { get; }
         public bool Equality { get; }
 
-        public Condition(char currChar, bool equality)
+        public Condition(MarkdownSymbols currChar, bool equality)
         {
-            Char = currChar;
+            Symbol = currChar;
             Equality = equality;
         }
         public Condition()

@@ -3,12 +3,8 @@
 namespace Markdown
 {    public class MarkdownParser
     {
-        private List<IReplaceable> Blocks { get; }
+        private List<Token> Tokens { get; }
 
-        public MarkdownParser(List<IReplaceable> blocks)
-        {
-            
-        }
         private bool СheckReplacingPossibility(string input, int indexOfsymbol)
         {
 
@@ -24,9 +20,10 @@ namespace Markdown
             
         }
 
-        public string Parse(string input)
+        private List<Token> Parse(string input)
         {
 
         }
+
     }
 }

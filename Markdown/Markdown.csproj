@@ -47,22 +47,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BlocksDependencies.cs" />
-    <Compile Include="Condition.cs" />
-    <Compile Include="Environ.cs" />
-    <Compile Include="EnvironCondition.cs" />
-    <Compile Include="EnvironConditions.cs" />
+    <Compile Include="Environ\Condition.cs" />
+    <Compile Include="Environ\Environ.cs" />
+    <Compile Include="Environ\EnvironCondition.cs" />
+    <Compile Include="Environ\EnvironConditions.cs" />
+    <Compile Include="ActiveElements\HTMLTags.cs" />
     <Compile Include="MarkdownParser.cs" />
+    <Compile Include="ActiveElements\MarkdownSymbols.cs" />
     <Compile Include="Md.cs" />
+    <Compile Include="Parsers\Headers.cs" />
+    <Compile Include="Parsers\IParse.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="ReplacingBlocks\DoubleUnderline.cs" />
-    <Compile Include="ReplacingBlocks\Header.cs" />
-    <Compile Include="ReplacingBlocks\HorizontalSeparator.cs" />
-    <Compile Include="ReplacingBlocks\IReplaceable.cs" />
-    <Compile Include="ReplacingBlocks\SingleUnderline.cs" />
     <Compile Include="Tests\BlocksDependenciesShould.cs" />
     <Compile Include="Tests\EnvironShould.cs" />
     <Compile Include="Tests\MdShould.cs" />
+    <Compile Include="Token.cs" />
+    <Compile Include="TokenToHTML.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
