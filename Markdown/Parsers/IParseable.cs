@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Markdown.Tests
+namespace Markdown.Parsers
 {
-    public class EnvironShould
+    public interface IParseable
     {
+        Token Parse(string input);
     }
 }

@@ -10,7 +10,7 @@ namespace Markdown
     public class MarkdownSymbols
     {
         // Тут блоковые символы Маркдауна
-        public Dictionary<char, IParse> SymbolsParsers { get; }
+        public Dictionary<char, IParseable> SymbolsParsers { get; }
 
         private readonly char[] Symbols =
         {
@@ -19,12 +19,12 @@ namespace Markdown
             '*'
         };
 
-        public MarkdownSymbols(IReadOnlyCollection<IParse> parsers)
+        public MarkdownSymbols(IReadOnlyCollection<IParseable> parsers)
         {
             if(Symbols.Length > parsers.Count)
                 throw new ArgumentException("Символов больше чем парсеров.");
 
-            SymbolsParsers = new Dictionary<char, IParse>();
+            SymbolsParsers = new Dictionary<char, IParseable>();
 
             int symbolIndex = 0;
             foreach (var parser in parsers)

@@ -53,21 +53,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Environ\Condition.cs" />
-    <Compile Include="Environ\Environ.cs" />
-    <Compile Include="Environ\EnvironCondition.cs" />
-    <Compile Include="Environ\EnvironConditions.cs" />
-    <Compile Include="ActiveElements\HTMLTags.cs" />
     <Compile Include="MarkdownParser.cs" />
     <Compile Include="ActiveElements\MarkdownSymbols.cs" />
     <Compile Include="Md.cs" />
     <Compile Include="Parsers\Headers.cs" />
-    <Compile Include="Parsers\IParse.cs" />
+    <Compile Include="Parsers\IParseable.cs" />
+    <Compile Include="Parsers\Quotes.cs" />
     <Compile Include="Parsers\Shielding.cs" />
+    <Compile Include="Parsers\Underline.cs" />
     <Compile Include="Tests\ShieldingShould.cs" />
     <Compile Include="UntilStopSymbol.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Tests\EnvironShould.cs" />
     <Compile Include="Tests\HeadersShould.cs" />
     <Compile Include="Tests\MarkdownSymbolsShould.cs" />
     <Compile Include="Tests\MdShould.cs" />

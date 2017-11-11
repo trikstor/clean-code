@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Markdown.Parsers
 {
-    public class Shielding : IParseable
+    public class Quotes : IParseable
     {
-        public Token Parse_CorrectToken(string input)
+        public Token Parse(string input)
         {
 
         }

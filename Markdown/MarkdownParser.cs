@@ -5,11 +5,11 @@ namespace Markdown
 {    public class MarkdownParser
     {
         public static int CurrInputIndex = 0;
-        public static List<IParse> Parsers;
+        public static List<IParseable> Parsers;
 
         public MarkdownParser()
         {
-            Parsers = new List<IParse>
+            Parsers = new List<IParseable>
             {
                 new Headers(),
                 new UntillStopSymbol()

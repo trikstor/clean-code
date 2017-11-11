@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace Markdown.Parsers
 {
-    public interface IParse
+    public class Underline : IParseable
     {
-        Environ SymbolEnviron { get; }
-        Token Parse(string input);
+        public Token Parse(string input)
+        {
+
+        }
     }
 }

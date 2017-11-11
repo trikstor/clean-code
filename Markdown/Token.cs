@@ -8,8 +8,17 @@ namespace Markdown
 {
     public class Token
     {
+        public enum TokenType
+        {
+            Header,
+            Bold,
+            Italic,
+            Code,
+            Horizontal
+        }
+
         public string Text { get; }
-        public string[] Tag { get; set; }
+        public TokenType Type { get; set; }
 
         public Token(string text)
         {

@@ -13,11 +13,11 @@ namespace Markdown.Tests
     [TestFixture]
     public class MarkdownSymbolsShould
     {
-        private List<IParse> Parsers { get; set; }
+        private List<IParseable> Parsers { get; set; }
         [SetUp]
         public void SetUp()
         {
-            Parsers = new List<IParse>
+            Parsers = new List<IParseable>
             {
                 new Headers(),
                 //new NoMdSymbols()

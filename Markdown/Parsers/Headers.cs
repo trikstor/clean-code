@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace Markdown.Parsers
 {
-    public class Headers : IParse
+    public class Headers : IParseable
     {
-        public Environ SymbolEnviron { get; }
         private string[] HeaderLevels { get; }
 
         public Headers()
