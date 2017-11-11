@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Markdown.Parsers
 {
-    public class NoMdSymbols : IParse
+    public class Shielding : IParse
     {
         public Environ SymbolEnviron { get; }
 
-        public Token Parse(string input)
+        public Token Parse_CorrectToken(string input)
         {
 
         }

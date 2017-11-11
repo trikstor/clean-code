@@ -20,7 +20,7 @@ namespace Markdown.Tests
             Parsers = new List<IParse>
             {
                 new Headers(),
-                new NoMdSymbols()
+                //new NoMdSymbols()
             };
         }
 
@@ -33,7 +33,7 @@ namespace Markdown.Tests
         [Test]
         public void ThrowException_ParsersMoreThenSymbols()
         {
-            Parsers.Add(new NoMdSymbols());
+            //Parsers.Add(new NoMdSymbols());
             Action res = () => { new MarkdownSymbols(Parsers); };
             res.ShouldThrow<ArgumentException>().WithMessage("Символов больше чем парсеров.");
         }

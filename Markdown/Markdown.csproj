@@ -63,12 +63,15 @@
     <Compile Include="Md.cs" />
     <Compile Include="Parsers\Headers.cs" />
     <Compile Include="Parsers\IParse.cs" />
-    <Compile Include="Parsers\NoMdSymbols.cs" />
+    <Compile Include="Parsers\Shielding.cs" />
+    <Compile Include="Tests\ShieldingShould.cs" />
+    <Compile Include="UntilStopSymbol.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="ReplacingPossibility.cs" />
     <Compile Include="Tests\EnvironShould.cs" />
+    <Compile Include="Tests\HeadersShould.cs" />
     <Compile Include="Tests\MarkdownSymbolsShould.cs" />
     <Compile Include="Tests\MdShould.cs" />
+    <Compile Include="Tests\UntillStopSymbolShould.cs" />
     <Compile Include="Tests\TokenToHTMLShould.cs" />
     <Compile Include="Token.cs" />
     <Compile Include="TokenToHTML.cs" />

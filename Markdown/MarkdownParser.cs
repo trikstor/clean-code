@@ -12,7 +12,7 @@ namespace Markdown
             Parsers = new List<IParse>
             {
                 new Headers(),
-                new NoMdSymbols()
+                new UntillStopSymbol()
             };
         }
 
