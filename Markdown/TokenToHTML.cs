@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Markdown
 {
-    public class TokenToHTML
+    public static class TokenToHTML
     {
-        public string Convert(Token token, HTMLTags tag)
+        public static string Convert(Token token)
         {
             // Оборачивание токена в тег
         }

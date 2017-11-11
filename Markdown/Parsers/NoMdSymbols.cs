@@ -6,9 +6,13 @@ using System.Threading.Tasks;
 
 namespace Markdown.Parsers
 {
-    public interface IParse
+    public class NoMdSymbols : IParse
     {
-        Environ SymbolEnviron { get; }
-        Token Parse(string input);
+        public Environ SymbolEnviron { get; }
+
+        public Token Parse(string input)
+        {
+
+        }
     }
 }

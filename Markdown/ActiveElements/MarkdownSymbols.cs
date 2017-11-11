@@ -7,9 +7,31 @@ using Markdown.Parsers;
 
 namespace Markdown
 {
-    public static class MarkdownSymbols
+    public class MarkdownSymbols
     {
         // Тут блоковые символы Маркдауна
-        public static Dictionary<char, IParse> MdSymbols { get; }
+        public Dictionary<char, IParse> SymbolsParsers { get; }
+
+        private readonly char[] Symbols =
+        {
+            '_',
+            '#',
+            '*'
+        };
+
+        public MarkdownSymbols(IReadOnlyCollection<IParse> parsers)
+        {
+            if(Symbols.Length > parsers.Count)
+                throw new ArgumentException("Символов больше чем парсеров.");
+
+            SymbolsParsers = new Dictionary<char, IParse>();
+
+            int symbolIndex = 0;
+            foreach (var parser in parsers)
+            {
+                SymbolsParsers.Add(Symbols[symbolIndex], parser);
+                symbolIndex++;
+            }
+        }
     }
 }

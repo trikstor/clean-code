@@ -9,7 +9,7 @@ namespace Markdown
     public class Token
     {
         public string Text { get; }
-        public HTMLTags Tag { get; set; }
+        public string[] Tag { get; set; }
 
         public Token(string text)
         {

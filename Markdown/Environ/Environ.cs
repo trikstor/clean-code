@@ -4,21 +4,15 @@ namespace Markdown
 {
     public class Environ
     {
-        public EnvironConditions OpenConditions { get; set; }
-        public EnvironConditions CloseConditions { get; set; }
+        public EnvironConditions Conditions { get; set; }
 
         public Environ(List<List<EnvironCondition>> leftConditions, List<List<EnvironCondition>> rightConditions)
         {
 
         }
 
-        public bool CheckEnviron(string input, int indexOfsymbol, bool isOpenConditions)
+        public bool CheckEnviron(string input, int indexOfsymbol)
         {
-        }
-
-        private bool CheckBoundaryEnviron(string input, int indexOfsymbol)
-        {
-
         }
     }
 }

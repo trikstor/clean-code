@@ -1,28 +1,24 @@
 ﻿using System.Collections.Generic;
+using Markdown.Parsers;
 
 namespace Markdown
 {    public class MarkdownParser
     {
-        private List<Token> Tokens { get; }
+        public static int CurrInputIndex = 0;
+        public static List<IParse> Parsers;
 
-        private bool СheckReplacingPossibility(string input, int indexOfsymbol)
+        public MarkdownParser()
         {
-
+            Parsers = new List<IParse>
+            {
+                new Headers(),
+                new NoMdSymbols()
+            };
         }
 
-        private bool СheckShielding(string input, int indexOfsymbol)
+        public IEnumerable<Token> MarkdownToTokens(string input)
         {
-
-        }
-
-        private string RemoveShielding(string input, int indexOfShieldingSymbol)
-        {
-            
-        }
-
-        private List<Token> Parse(string input)
-        {
-
+            // Передача функции парсинга в специализированные методы
         }
 
     }

@@ -9,6 +9,7 @@ namespace Markdown.Parsers
 {
     public class Headers : IParse
     {
+        public Environ SymbolEnviron { get; }
         private string[] HeaderLevels { get; }
 
         public Headers()
