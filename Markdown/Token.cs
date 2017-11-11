@@ -14,7 +14,8 @@ namespace Markdown
             Bold,
             Italic,
             Code,
-            Horizontal
+            Horizontal,
+            Default
         }
 
         public string Text { get; }
@@ -22,7 +23,8 @@ namespace Markdown
 
         public Token(string text)
         {
-            
+            Text = text;
+            Type = TokenType.Default;
         }
     }
 }

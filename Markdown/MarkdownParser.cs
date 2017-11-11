@@ -12,13 +12,13 @@ namespace Markdown
             Parsers = new List<IParseable>
             {
                 new Headers(),
-                new UntillStopSymbol()
             };
         }
 
         public IEnumerable<Token> MarkdownToTokens(string input)
         {
             // Передача функции парсинга в специализированные методы
+            return null; //TODO
         }
 
     }

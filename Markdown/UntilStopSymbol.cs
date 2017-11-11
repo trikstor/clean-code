@@ -10,12 +10,12 @@ namespace Markdown.Parsers
     {
         public static Token Parse(string input, char stopSymbol)
         {
-
+            return null; //TODO
         }
 
         public static Token Parse(string input, char[] stopSymbol)
         {
-
+            return null; //TODO
         }
     }
 }

@@ -9,7 +9,8 @@ namespace Markdown
 {
     public class TokenToHTML
     {
-        private Dictionary<TokenType, string> TokenTypeToTag;
+        private Dictionary<TokenType, string> TokenTypeToTag { get; }
+        private List<TokenType> SingleTags { get; }
 
         public TokenToHTML()
         {
@@ -19,13 +20,25 @@ namespace Markdown
                 {TokenType.Italic, "<em>"},
                 {TokenType.Header, "<h1>"},
                 {TokenType.Code, "<code>"},
-                {TokenType.Horizontal, "<hr/>"}
+                {TokenType.Horizontal, "<hr/>"},
+                {TokenType.Default, "" }
+            };
+
+            SingleTags = new List<TokenType>
+            {
+                TokenType.Horizontal
             };
         }
 
-        public string Convert(Token token)
+        public Token Convert(Token token)
         {
-            // Оборачивание токена в тег
+            if (string.IsNullOrEmpty(token.Text) && token.Type == TokenType.Default)
+                return token;
+            var openTag = TokenTypeToTag[token.Type];
+            var closeTag = "";
+            if(!SingleTags.Contains(token.Type))
+                closeTag = "</" + TokenTypeToTag[token.Type].Substring(1);
+            return new Token(openTag + token.Text + closeTag);
         }
     }
 }

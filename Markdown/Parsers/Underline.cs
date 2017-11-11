@@ -10,7 +10,7 @@ namespace Markdown.Parsers
     {
         public Token Parse(string input)
         {
-
+            return null; //TODO
         }
     }
 }

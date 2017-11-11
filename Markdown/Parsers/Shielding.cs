@@ -8,9 +8,9 @@ namespace Markdown.Parsers
 {
     public class Shielding : IParseable
     {
-        public Token Parse_CorrectToken(string input)
+        public Token Parse(string input)
         {
-
+            return null; //TODO
         }
     }
 }
