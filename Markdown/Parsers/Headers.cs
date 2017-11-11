@@ -23,7 +23,7 @@ namespace Markdown.Parsers
             };
         }
 
-        public Token Parse(string input)
+        public Token Parse(string input, int inputIndex)
         {
             return null; //TODO
         }

@@ -8,6 +8,6 @@ namespace Markdown.Parsers
 {
     public interface IParseable
     {
-        Token Parse(string input);
+        Token Parse(string input, int inputIndex);
     }
 }

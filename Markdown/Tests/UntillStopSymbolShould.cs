@@ -13,11 +13,11 @@ namespace Markdown.Tests
     [TestFixture]
     public class UntillStopSymbolShould
     {
-        [TestCase("\\#testWord", "#testWord", TestName = "Игнорирование тега при экранировании.")]
-        [TestCase("testWithoutSymbols#testWord", "testWithoutSymbols", TestName = "Прогонка до стоп-символа")]
+ 
+        [TestCase("testWithoutSymbols#testWord", "testWithoutSymbols", '#', TestName = "Прогонка до стоп-символа")]
         public void Parse_CorrectToken(string input, string tokenText, char stopSymbol)
         {
-            var resToken = UntillStopSymbol.Parse(input, stopSymbol);
+            var resToken = UntillStopSymbol.Parse(input, 0,  stopSymbol);
             resToken.Text.Should().Be(tokenText);
         }
     }

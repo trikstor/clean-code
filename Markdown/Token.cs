@@ -20,11 +20,13 @@ namespace Markdown
 
         public string Text { get; }
         public TokenType Type { get; set; }
+        public int StratIndex { get; set; }
 
-        public Token(string text)
+        public Token(string text, int stratIndex)
         {
             Text = text;
             Type = TokenType.Default;
+            StratIndex = stratIndex;
         }
     }
 }

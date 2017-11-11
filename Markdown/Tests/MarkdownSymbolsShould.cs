@@ -20,7 +20,7 @@ namespace Markdown.Tests
             Parsers = new List<IParseable>
             {
                 new Headers(),
-                //new NoMdSymbols()
+                new Underline()
             };
         }
 

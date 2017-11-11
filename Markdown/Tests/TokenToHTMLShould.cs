@@ -23,21 +23,21 @@ namespace Markdown.Tests
         [Test]
         public void ProduceEmptyString_EmptyTextInTokenWithoutType()
         {
-            var testToken = new Token("");
+            var testToken = new Token("", 0);
             Converter.Convert(testToken).Text.Should().Be("");
         }
 
         [Test]
         public void CorrectConvertationDoubleTag_CorrectToken()
         {
-            var testToken = new Token("testWord") {Type = TokenType.Bold};
+            var testToken = new Token("testWord", 0) {Type = TokenType.Bold};
             Converter.Convert(testToken).Text.Should().Be("<strong>testWord</strong>");
         }
 
         [Test]
         public void CorrectConvertationSingleTag_CorrectToken()
         {
-            var testToken = new Token("") { Type = TokenType.Horizontal };
+            var testToken = new Token("", 0) { Type = TokenType.Horizontal };
             Converter.Convert(testToken).Text.Should().Be("<hr/>");
         }
     }

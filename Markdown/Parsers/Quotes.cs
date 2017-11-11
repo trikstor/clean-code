@@ -8,7 +8,7 @@ namespace Markdown.Parsers
 {
     public class Quotes : IParseable
     {
-        public Token Parse(string input)
+        public Token Parse(string input, int inputIndex)
         {
             return null; //TODO
         }
