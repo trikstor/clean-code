@@ -20,7 +20,7 @@ namespace Markdown.Tests
             Shielder = new Shielding();
         }
 
-        [TestCase("#testWord", "#testWord", TestName = "Токен без символов экранирования.")]
+        [TestCase("\\#testWord", "#testWord", TestName = "Создание токена без символов экранирования.")]
         public void Parse_CorrectToken(string input, string tokenText)
         {
             var resToken = Shielder.Parse(input, 0);

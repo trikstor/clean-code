@@ -13,9 +13,11 @@ namespace Markdown
 
         public static readonly List<char> Symbols = new List<char>
         {
-            '_',
             '#',
-            '*'
+            '_',
+            '*',
+            '`',
+            '\\'
         };
 
         public MarkdownSymbols(IReadOnlyCollection<IParseable> parsers)

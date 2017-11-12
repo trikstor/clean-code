@@ -36,9 +36,9 @@ namespace Markdown
                 return token;
             var openTag = TokenTypeToTag[token.Type];
             var closeTag = "";
-            if(!SingleTags.Contains(token.Type))
+            if(!SingleTags.Contains(token.Type) && token.Type != TokenType.Default)
                 closeTag = "</" + TokenTypeToTag[token.Type].Substring(1);
-            return new Token(openTag + token.Text + closeTag, token.StratIndex);
+            return new Token(openTag + token.Text + closeTag, token.StartIndex);
         }
     }
 }

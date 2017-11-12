@@ -53,10 +53,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MarkdownParser.cs" />
     <Compile Include="ActiveElements\MarkdownSymbols.cs" />
     <Compile Include="Md.cs" />
     <Compile Include="Parsers\Headers.cs" />
+    <Compile Include="Parsers\Horizontal.cs" />
     <Compile Include="Parsers\IParseable.cs" />
     <Compile Include="Parsers\Quotes.cs" />
     <Compile Include="Parsers\Shielding.cs" />

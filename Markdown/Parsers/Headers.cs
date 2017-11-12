@@ -9,23 +9,11 @@ namespace Markdown.Parsers
 {
     public class Headers : IParseable
     {
-        private string[] HeaderLevels { get; }
-
-        public Headers()
-        {
-            HeaderLevels = new[]
-            {
-                "#",
-                "##",
-                "###",
-                "####",
-                "#####"
-            };
-        }
-
         public Token Parse(string input, int inputIndex)
         {
-            return null; //TODO
+            var headerToken = UntillStopSymbol.Parse(input, inputIndex + 1, '\n');
+            headerToken.Type = Token.TokenType.Header;
+            return headerToken;
         }
     }
 }

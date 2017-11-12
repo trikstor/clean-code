@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Markdown.Parsers
 {
-    public class Shielding : IParseable
+    public class Horizontal : IParseable
     {
         public Token Parse(string input, int inputIndex)
         {
-            return new Token(input[1] + UntillStopSymbol.Parse(input, inputIndex + 2, MarkdownSymbols.Symbols).Text, inputIndex + 2);
+            return null; //TODO
         }
     }
 }

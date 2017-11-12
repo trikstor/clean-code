@@ -20,22 +20,25 @@ namespace Markdown.Tests
             Parsers = new List<IParseable>
             {
                 new Headers(),
-                new Underline()
+                new Underline(),
+                new Quotes(),
+                new Horizontal()
             };
+        }
+
+
+        [Test]
+        public void ThrowException_ParsersMoreThenSymbols()
+        {
+            Action res = () => { new MarkdownSymbols(Parsers); };
+            res.ShouldThrow<ArgumentException>().WithMessage("Символов больше чем парсеров.");
         }
 
         [Test]
         public void CorrectBuilding_CorrectParsersQuantity()
         {
-            new MarkdownSymbols(Parsers).SymbolsParsers.Count.Should().Be(2);
-        }
-
-        [Test]
-        public void ThrowException_ParsersMoreThenSymbols()
-        {
-            //Parsers.Add(new NoMdSymbols());
-            Action res = () => { new MarkdownSymbols(Parsers); };
-            res.ShouldThrow<ArgumentException>().WithMessage("Символов больше чем парсеров.");
+            Parsers.Add(new Shielding());
+            new MarkdownSymbols(Parsers).SymbolsParsers.Count.Should().Be(5);
         }
     }
 }

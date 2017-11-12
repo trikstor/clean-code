@@ -8,14 +8,14 @@ namespace Markdown.Tests
     public class HeadersShould
     {
         [TestCase("#testWord", "testWord", Token.TokenType.Header, TestName = "Заголовок первого уровня")]
-        [TestCase("#testWord /n NextRow", "testWord", Token.TokenType.Header, TestName =
+        [TestCase("#testWord\nNextRow", "testWord", Token.TokenType.Header, TestName =
             "Заголовок не активен при переносе строки.")]
         public void Parse_CorrectToken(string input, string tokenText, Token.TokenType type)
         {
-            //var resToken = new Headers().Parse(input);
+            var resToken = new Headers().Parse(input, 0);
 
-            //resToken.Type.Should().Be(type);
-            //resToken.Text.Should().Be(tokenText);
+            resToken.Type.Should().Be(type);
+            resToken.Text.Should().Be(tokenText);
         }
     }
 }
