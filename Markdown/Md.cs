@@ -15,9 +15,9 @@ namespace Markdown
                 new List<IParseable>
             {
                 new Headers(),
+                new Underline(),
                 new Horizontal(),
                 new Quotes(),
-                new Underline(),
                 new Shielding()
             });
         }

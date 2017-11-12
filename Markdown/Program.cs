@@ -11,7 +11,7 @@ namespace Markdown
 	{
 		static void Main(string[] args)
 		{
-		    new Md().RenderToHtml("\\#aaa");
+		    new Md().RenderToHtml("_aaa_");
 		}
 	}
 }

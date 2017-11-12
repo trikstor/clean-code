@@ -6,13 +6,13 @@ namespace Markdown.Tests
     [TestFixture]
     public class MdShould
     {
-        //[TestCase("_testword_tsd", "<em>testword</em>tsd", TestName = "Замена одинарных подчеркиваний")]
+        [TestCase("_testword_tsd", "<em>testword</em>tsd", TestName = "Замена одинарных подчеркиваний")]
         //[TestCase("__testword__tsd", "<strong>testword</strong>tsd", TestName = "Замена двойных подчеркиваний")]
         [TestCase("\\_test_word\\_tsd", "_test_word_tsd", TestName = "Проверка экранирования")]
         //[TestCase("__test_word_tsd__", "<strong>test<em>word</em>tsd</strong>", TestName = "Одинарное выделение внутри двойного")]
         //[TestCase("_test__word__tsd_", "<em>test__word__tsd</em>", TestName = "Двойное выделение внутри одинарного")]
         //[TestCase("__testword_tsd", "__testword_tsd", TestName = "Непарное выделение")]
-        //[TestCase("_12_3", "_12_3", TestName = "Подчерки внутри текста с цифрами")]
+        [TestCase("_12_3", "_12_3", TestName = "Подчерки внутри текста с цифрами")]
         //[TestCase("_ testword_", "_ testword_", TestName = "Пробел после открывающего подчеркивания")]
         //[TestCase("_testword _", "_testword _", TestName = "Пробел перед закрывающим подчеркиванием")]
         [TestCase("#testword", "<h1>testword</h1>", TestName = "Заголовок")]
