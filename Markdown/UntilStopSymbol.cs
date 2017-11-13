@@ -17,7 +17,6 @@ namespace Markdown.Parsers
                 if(input[inputIndex] == stopSymbol)
                     break;
             }
-            Console.WriteLine(input.Substring(startIndex, inputIndex - startIndex));
             return new Token(input.Substring(startIndex, inputIndex - startIndex), startIndex);
         }
 
@@ -29,7 +28,6 @@ namespace Markdown.Parsers
                 if (stopSymbols.Contains(input[inputIndex]))
                     break;
             }
-
             return new Token(input.Substring(startIndex, inputIndex - startIndex), startIndex);
         }
     }
