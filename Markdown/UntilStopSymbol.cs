@@ -10,14 +10,21 @@ namespace Markdown.Parsers
     {
         public static Token Parse(string input, int inputIndex, char stopSymbol)
         {
- 
+            var res = "";
+            var deleted = 0;
             var startIndex = inputIndex;
             for (; inputIndex < input.Length; inputIndex++)
             {
-                if(input[inputIndex] == stopSymbol)
+                if (input[inputIndex] == stopSymbol)
                     break;
+                if (input[inputIndex] == '\\')
+                {
+                    inputIndex += 1;
+                    deleted++;
+                }
+                res += input[inputIndex];
             }
-            return new Token(input.Substring(startIndex, inputIndex - startIndex), startIndex);
+            return new Token(res, startIndex + deleted);
         }
 
         public static Token Parse(string input, int inputIndex, List<char> stopSymbols)

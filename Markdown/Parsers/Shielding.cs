@@ -10,7 +10,8 @@ namespace Markdown.Parsers
     {
         public Token Parse(string input, int inputIndex)
         {
-            return new Token(input[1] + UntillStopSymbol.Parse(input, inputIndex + 2, MarkdownSymbols.Symbols).Text, inputIndex + 2);
+            return new Token(input[inputIndex + 1] + UntillStopSymbol.Parse(input, inputIndex + 2, MarkdownSymbols.Symbols).Text, 
+                inputIndex + 2);
         }
     }
 }
