@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Markdown.Parsers
 {
-    public static class UntillStopSymbol
+    public static class AbstractReader
     {
-        public static Token Parse(string input, int inputIndex, char stopSymbol)
+        public static Token Reader(string input, int inputIndex, char stopSymbol)
         {
             var res = "";
             var deleted = 0;
@@ -27,15 +27,23 @@ namespace Markdown.Parsers
             return new Token(res, startIndex + deleted);
         }
 
-        public static Token Parse(string input, int inputIndex, List<char> stopSymbols)
+        public static Token Reader(string input, int inputIndex, List<char> stopSymbols)
         {
+            var res = "";
+            var deleted = 0;
             var startIndex = inputIndex;
             for (; inputIndex < input.Length; inputIndex++)
             {
                 if (stopSymbols.Contains(input[inputIndex]))
                     break;
+                if (input[inputIndex] == '\\')
+                {
+                    inputIndex += 1;
+                    deleted++;
+                }
+                res += input[inputIndex];
             }
-            return new Token(input.Substring(startIndex, inputIndex - startIndex), startIndex);
+            return new Token(res, startIndex + deleted);
         }
     }
 }

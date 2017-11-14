@@ -10,35 +10,28 @@ namespace Markdown
     public class TokenToHTML
     {
         private Dictionary<TokenType, string> TokenTypeToTag { get; }
-        private List<TokenType> SingleTags { get; }
 
         public TokenToHTML()
         {
             TokenTypeToTag = new Dictionary<TokenType, string>
             {
-                {TokenType.Bold, "<strong>"},
-                {TokenType.Italic, "<em>"},
-                {TokenType.Header, "<h1>"},
-                {TokenType.Code, "<code>"},
-                {TokenType.Horizontal, "<hr/>"},
+                {TokenType.Bold, "strong"},
+                {TokenType.Italic, "em"},
+                {TokenType.Header, "h1"},
+                {TokenType.Code, "code"},
+                {TokenType.Horizontal, "hr"},
                 {TokenType.Default, "" }
-            };
-
-            SingleTags = new List<TokenType>
-            {
-                TokenType.Horizontal
             };
         }
 
         public Token Convert(Token token)
         {
-            if (string.IsNullOrEmpty(token.Text) && token.Type == TokenType.Default)
+            if (token.Type == TokenType.Default)
                 return token;
-            var openTag = TokenTypeToTag[token.Type];
-            var closeTag = "";
-            if(!SingleTags.Contains(token.Type) && token.Type != TokenType.Default)
-                closeTag = "</" + TokenTypeToTag[token.Type].Substring(1);
-            return new Token(openTag + token.Text + closeTag, token.StartIndex);
+            var tagName = TokenTypeToTag[token.Type];
+            if(token.Type == TokenType.Horizontal)
+                return new Token($"<{tagName}/>", token.StartIndex);
+            return new Token($"<{tagName}>{token.Text}</{tagName}>", token.StartIndex);
         }
     }
 }

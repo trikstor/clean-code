@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Markdown.Parsers
+namespace Markdown.Readers
 {
-    public interface IParseable
+    public interface IReadable
     {
-        Token Parse(string input, int inputIndex);
+        Token Read(string input, int inputIndex);
     }
 }

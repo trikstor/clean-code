@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Markdown.Readers;
 
 namespace Markdown.Parsers
 {
-    public class Horizontal : IParseable
+    public class Quotes : IReadable
     {
-        public Token Parse(string input, int inputIndex)
+        public Token Read(string input, int inputIndex)
         {
             return null; //TODO
         }

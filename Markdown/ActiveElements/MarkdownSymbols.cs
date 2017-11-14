@@ -7,32 +7,20 @@ using Markdown.Parsers;
 
 namespace Markdown
 {
-    public class MarkdownSymbols
+    public static class MarkdownSymbols
     {
-        public Dictionary<char, IParseable> SymbolsParsers { get; }
+        public const char Emphasis = '_';
+        public const char Shielding = '\\';
+        public const char Space = ' ';
+        public const char NewLine = '\n';
+        public const char Header = '#';
+        public const char Asterisk = '*';
 
-        public static readonly List<char> Symbols = new List<char>
+        public static readonly List<char> AllSymbols = new List<char>
         {
-            '#',
-            '_',
-            '*',
-            '`',
-            '\\'
+            Emphasis,
+            Shielding,
+            Header,
         };
-
-        public MarkdownSymbols(IReadOnlyCollection<IParseable> parsers)
-        {
-            if(Symbols.Count > parsers.Count)
-                throw new ArgumentException("Символов больше чем парсеров.");
-
-            SymbolsParsers = new Dictionary<char, IParseable>();
-
-            int symbolIndex = 0;
-            foreach (var parser in parsers)
-            {
-                SymbolsParsers.Add(Symbols[symbolIndex], parser);
-                symbolIndex++;
-            }
-        }
     }
 }

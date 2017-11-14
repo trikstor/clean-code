@@ -12,7 +12,7 @@ namespace Markdown.Tests
             "Заголовок не активен при переносе строки.")]
         public void Parse_CorrectToken(string input, string tokenText, Token.TokenType type)
         {
-            var resToken = new Headers().Parse(input, 0);
+            var resToken = new Headers().Read(input, 0);
 
             resToken.Type.Should().Be(type);
             resToken.Text.Should().Be(tokenText);

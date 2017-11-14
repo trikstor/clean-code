@@ -54,18 +54,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActiveElements\MarkdownSymbols.cs" />
+    <Compile Include="TokenReaders\TokenReader.cs" />
     <Compile Include="Md.cs" />
-    <Compile Include="Parsers\Headers.cs" />
-    <Compile Include="Parsers\Horizontal.cs" />
-    <Compile Include="Parsers\IParseable.cs" />
-    <Compile Include="Parsers\Quotes.cs" />
-    <Compile Include="Parsers\Shielding.cs" />
-    <Compile Include="Parsers\Underline.cs" />
-    <Compile Include="Tests\ShieldingShould.cs" />
-    <Compile Include="UntilStopSymbol.cs" />
+    <Compile Include="TokenReaders\Headers.cs" />
+    <Compile Include="TokenReaders\Horizontal.cs" />
+    <Compile Include="TokenReaders\IReadable.cs" />
+    <Compile Include="TokenReaders\Quotes.cs" />
+    <Compile Include="TokenReaders\Underline.cs" />
+    <Compile Include="AbstractReader.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Tests\HeadersShould.cs" />
-    <Compile Include="Tests\MarkdownSymbolsShould.cs" />
     <Compile Include="Tests\MdShould.cs" />
     <Compile Include="Tests\UntillStopSymbolShould.cs" />
     <Compile Include="Tests\TokenToHTMLShould.cs" />

@@ -1,25 +1,34 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using FluentAssertions;
+using Markdown.ActiveElements;
 using Markdown.Parsers;
+using Markdown.Readers;
 using NUnit.Framework;
 
 namespace Markdown
 {
     public class Md
     {
-        private MarkdownSymbols MdSymbols { get; }
+        private Dictionary<char, IReadable> TokenReaders { get; }
+        private List<char> CurrMdSymbols { get; }
+
+        public Md(List<TokenReader> tokenReaders)
+        {
+            TokenReaders = tokenReaders.ToDictionary(x => x.Symbol, x => x.Reader);
+            CurrMdSymbols = tokenReaders.Select(x => x.Symbol).ToList();
+        }
 
         public Md()
         {
-            MdSymbols = new MarkdownSymbols(
-                new List<IParseable>
+            var tokenReaders = new List<TokenReader>
             {
-                new Headers(),
-                new Underline(),
-                new Horizontal(),
-                new Quotes(),
-                new Shielding()
-            });
+                new TokenReader(new Headers(), MarkdownSymbols.Header),
+                new TokenReader(new Underline(), MarkdownSymbols.Emphasis),
+                new TokenReader(new Horizontal(), MarkdownSymbols.Asterisk)
+            };
+            CurrMdSymbols = tokenReaders.Select(x => x.Symbol).ToList();
+            TokenReaders = tokenReaders.ToDictionary(x => x.Symbol, x => x.Reader);
         }
 
         public string RenderToHtml(string markdown)
@@ -35,7 +44,10 @@ namespace Markdown
             while (currIndex < input.Length)
             {
                 var currToken = GetNextToken(input, currIndex);
-                currIndex = currToken.StartIndex + currToken.Text.Length;
+                if (currIndex != currToken.StartIndex + currToken.Text.Length)
+                    currIndex = currToken.StartIndex + currToken.Text.Length;
+                else
+                    currIndex++;
                 yield return currToken;
             }
         }
@@ -43,10 +55,9 @@ namespace Markdown
         private Token GetNextToken(string input, int inputIndex)
         {
             var currSymbol = input[inputIndex];
-            return MdSymbols.SymbolsParsers
-                .ContainsKey(currSymbol) ? 
-                MdSymbols.SymbolsParsers[currSymbol].Parse(input, inputIndex) : 
-                UntillStopSymbol.Parse(input, inputIndex, MarkdownSymbols.Symbols);
+            return TokenReaders.ContainsKey(currSymbol)
+                ? TokenReaders[currSymbol].Read(input, inputIndex)
+                : AbstractReader.Reader(input, inputIndex, CurrMdSymbols);
         }
     }
 }
