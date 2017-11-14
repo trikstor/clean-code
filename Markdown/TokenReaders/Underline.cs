@@ -22,7 +22,7 @@ namespace Markdown.Parsers
             if (char.IsDigit(input[inputIndex + 1]))
             {
                 return new Token(
-                    input[0] + AbstractReader.Reader(input, inputIndex + 1, 
+                    input[0] + AbstractReader.Read(input, inputIndex + 1, 
                     MarkdownSymbols.AllSymbols).Text,
                     inputIndex);
             }
@@ -33,7 +33,7 @@ namespace Markdown.Parsers
         private Token ReadSingle(string input, int inputIndex)
         {
             var startIndex = inputIndex;
-            var startToken = AbstractReader.Reader(input, inputIndex + 1, MarkdownSymbols.Emphasis);
+            var startToken = AbstractReader.Read(input, inputIndex + 1, MarkdownSymbols.Emphasis);
             if (startToken.StartIndex + startToken.Text.Length == input.Length || 
                 input[inputIndex + 1] == MarkdownSymbols.Space)
                 return new Token('_' + startToken.Text, inputIndex);
@@ -56,7 +56,7 @@ namespace Markdown.Parsers
         private Token ReadDouble(string input, int inputIndex)
         {
             var startInput = inputIndex;
-            var startToken = AbstractReader.Reader(input, inputIndex + 2, MarkdownSymbols.Emphasis);
+            var startToken = AbstractReader.Read(input, inputIndex + 2, MarkdownSymbols.Emphasis);
             inputIndex += 2;
             inputIndex = GetTagIndexWithTrueEnviron(input, inputIndex, CheckDoubleTagEnviron);
             if (inputIndex == -1)

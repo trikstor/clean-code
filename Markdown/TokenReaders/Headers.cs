@@ -12,7 +12,7 @@ namespace Markdown.Parsers
     {
         public Token Read(string input, int inputIndex)
         {
-            var headerToken = AbstractReader.Reader(input, inputIndex + 1, '\n');
+            var headerToken = AbstractReader.Read(input, inputIndex + 1, '\n');
             headerToken.Type = Token.TokenType.Header;
             return headerToken;
         }

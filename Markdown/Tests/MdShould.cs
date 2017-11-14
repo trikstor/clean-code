@@ -19,6 +19,7 @@ namespace Markdown.Tests
         [TestCase("_testword _", "_testword _", TestName = "Пробел перед закрывающим двойным подчеркиванием")]
         [TestCase("_ testword_", "_ testword_", TestName = "Пробел после открывающего двойного подчеркивания")]
         [TestCase("test\n***\nword", "test\n<hr/>\nword", TestName = "Горизонтальный разделитель")]
+        [TestCase("``test`word``", "<code>test`word</code>", TestName = "Выделение кода")]
         public void RenderToHtml_CorrectTranslation(string input, string output)
         {
             var md = new Md();

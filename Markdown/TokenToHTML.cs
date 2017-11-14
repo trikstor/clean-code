@@ -18,8 +18,8 @@ namespace Markdown
                 {TokenType.Bold, "strong"},
                 {TokenType.Italic, "em"},
                 {TokenType.Header, "h1"},
-                {TokenType.Code, "code"},
                 {TokenType.Horizontal, "hr"},
+                {TokenType.Code, "code"},
                 {TokenType.Default, "" }
             };
         }

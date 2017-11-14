@@ -4,6 +4,7 @@ using FluentAssertions;
 using Markdown.ActiveElements;
 using Markdown.Parsers;
 using Markdown.Readers;
+using Markdown.TokenReaders;
 using NUnit.Framework;
 
 namespace Markdown
@@ -25,7 +26,8 @@ namespace Markdown
             {
                 new TokenReader(new Headers(), MarkdownSymbols.Header),
                 new TokenReader(new Underline(), MarkdownSymbols.Emphasis),
-                new TokenReader(new Horizontal(), MarkdownSymbols.Asterisk)
+                new TokenReader(new Horizontal(), MarkdownSymbols.Asterisk),
+                new TokenReader(new Quotes(), MarkdownSymbols.Quote)
             };
             CurrMdSymbols = tokenReaders.Select(x => x.Symbol).ToList();
             TokenReaders = tokenReaders.ToDictionary(x => x.Symbol, x => x.Reader);
@@ -57,7 +59,7 @@ namespace Markdown
             var currSymbol = input[inputIndex];
             return TokenReaders.ContainsKey(currSymbol)
                 ? TokenReaders[currSymbol].Read(input, inputIndex)
-                : AbstractReader.Reader(input, inputIndex, CurrMdSymbols);
+                : AbstractReader.Read(input, inputIndex, CurrMdSymbols);
         }
     }
 }

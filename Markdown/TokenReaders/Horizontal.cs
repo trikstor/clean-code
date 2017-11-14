@@ -15,12 +15,12 @@ namespace Markdown.Parsers
             if (inputIndex + 2 <= input.Length - 1 && input[inputIndex + 1] == MarkdownSymbols.Asterisk &&
                 input[inputIndex + 2] == MarkdownSymbols.Asterisk)
             {
-                var token = AbstractReader.Reader(input, inputIndex + 3, '\n');
+                var token = AbstractReader.Read(input, inputIndex + 3, '\n');
                 token.Type = Token.TokenType.Horizontal;
                 return token;
             }
 
-            return AbstractReader.Reader(input, inputIndex, MarkdownSymbols.AllSymbols);
+            return AbstractReader.Read(input, inputIndex, MarkdownSymbols.AllSymbols);
         }
     }
 }

@@ -17,7 +17,7 @@ namespace Markdown.Tests
         [TestCase("testWithoutSymbols#testWord", "testWithoutSymbols", '#', TestName = "Прогонка до стоп-символа")]
         public void Parse_CorrectToken(string input, string tokenText, char stopSymbol)
         {
-            var resToken = AbstractReader.Reader(input, 0,  stopSymbol);
+            var resToken = AbstractReader.Read(input, 0,  stopSymbol);
             resToken.Text.Should().Be(tokenText);
         }
     }
