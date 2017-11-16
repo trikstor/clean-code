@@ -11,7 +11,7 @@ using NUnit.Framework.Internal;
 namespace Markdown.Tests
 {
     [TestFixture]
-    public class UntillStopSymbolShould
+    public class AbstractReaderShould
     {
  
         [TestCase("testWithoutSymbols#testWord", "testWithoutSymbols", '#', TestName = "Прогонка до стоп-символа")]

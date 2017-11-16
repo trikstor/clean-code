@@ -1,4 +1,7 @@
-﻿using NUnit.Framework;
+﻿using System;
+using System.IO;
+using System.Reflection;
+using NUnit.Framework;
 using FluentAssertions;
 
 namespace Markdown.Tests
@@ -6,6 +9,13 @@ namespace Markdown.Tests
     [TestFixture]
     public class MdShould
     {
+        private Md md;
+        [SetUp]
+        public void SetUp()
+        {
+            md = new Md();
+        }
+
         [TestCase("_testword_tsd", "<em>testword</em>tsd", TestName = "Замена одинарных подчеркиваний")]
         [TestCase("__testword__tsd", "<strong>testword</strong>tsd", TestName = "Замена двойных подчеркиваний")]
         [TestCase("test\\_lol\\__word", "test_lol__word", TestName = "Проверка экранирования")]
@@ -22,8 +32,40 @@ namespace Markdown.Tests
         [TestCase("``test`word``", "<code>test`word</code>", TestName = "Выделение кода")]
         public void RenderToHtml_CorrectTranslation(string input, string output)
         {
-            var md = new Md();
             md.RenderToHtml(input).Should().Be(output);
+        }
+
+        [TestFixture]
+        public class MdTimeShouldBeLinear
+        {
+            private Md md;
+            private string testStrings;
+
+            [SetUp]
+            public void SetUp()
+            {
+                md = new Md();
+                testStrings = TakeStringsFromFile(
+                    "C:\\Users\\Антон\\Desktop\\clean-code\\Markdown\\Tests\\testStrings2000.txt");
+            }
+
+            [Test, Timeout(11)]
+            public void CheckTime()
+            {
+                md.RenderToHtml(testStrings);
+            }
+
+            private string TakeStringsFromFile(string path)
+            {
+                var resStr = "";
+                using (var textReader = new StreamReader(path))
+                {
+                    string currStr;
+                    while ((currStr = textReader.ReadLine()) != null)
+                        resStr += currStr;
+                }
+                return resStr;
+            }
         }
     }
 }

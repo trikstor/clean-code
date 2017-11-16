@@ -3,33 +3,29 @@ using Markdown.Readers;
 
 namespace Markdown.TokenReaders
 {
-    public class Quotes : IReadable
+    public class Quotes : CommonReaderEnviron, IRead
     {
+        public char Symbol { get; } = MarkdownSymbols.Quote;
         public Token Read(string input, int inputIndex)
         {
-            var found = false;
+            var startIndex = inputIndex;
             if (inputIndex + 1 <= input.Length - 1 && 
                 input[inputIndex + 1] == MarkdownSymbols.Quote)
             {
-                inputIndex += 2;
-                var startIndex = inputIndex;
-                for (; inputIndex < input.Length - 1; inputIndex++)
+                inputIndex = GetTagIndexWithTrueEnviron(input, inputIndex + 2, CheckQuotesEnviron);
+                if (inputIndex != -1)
                 {
-                    if (input[inputIndex] == MarkdownSymbols.Quote && input[inputIndex + 1] == MarkdownSymbols.Quote)
-                    {
-                        found = true;
-                        break;
-                    }
-                }
-                if (found)
-                {
-                    var token = new Token(input.Substring(startIndex, inputIndex - startIndex), startIndex);
-                    token.Type = token.TokenTypes["Code"];
+                    var token = new Token(input.Substring(startIndex + 2, inputIndex - startIndex - 2), startIndex + 2);
+                    token.Tag = token.TokenTypes["Code"];
                     return token;
                 }
             }
-            inputIndex++;
-            return AbstractReader.Read(input, inputIndex, MarkdownSymbols.AllSymbols);
+            return AbstractReader.Read(input, startIndex + 1, MarkdownSymbols.AllSymbols);
+        }
+
+        private bool CheckQuotesEnviron(string input, int inputIndex)
+        {
+            return inputIndex != input.Length - 1 && input[inputIndex] == MarkdownSymbols.Quote && input[inputIndex + 1] == MarkdownSymbols.Quote;
         }
     }
 }

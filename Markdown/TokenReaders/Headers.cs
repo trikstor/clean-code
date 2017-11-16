@@ -8,13 +8,28 @@ using Markdown.Readers;
 
 namespace Markdown.Parsers
 {
-    public class Headers : IReadable
+    public class Headers : IRead
     {
+        public char Symbol { get; } = MarkdownSymbols.Header;
         public Token Read(string input, int inputIndex)
         {
-            var headerToken = AbstractReader.Read(input, inputIndex + 1, '\n');
-            headerToken.Type = Token.TokenType.Header;
+            var headerLevel = GetHeaderLevel(input, inputIndex);
+            var headerToken = AbstractReader.Read(input, inputIndex + headerLevel, '\n');
+            headerToken.TokenTypes["Header"] += headerLevel.ToString();
+            headerToken.Tag = headerToken.TokenTypes["Header"];
             return headerToken;
+        }
+
+        private int GetHeaderLevel(string input, int inputIndex)
+        {
+            var headerLevel = 0;
+            while (inputIndex != input.Length &&
+                   input[inputIndex] == MarkdownSymbols.Header)
+            {
+                headerLevel++;
+                inputIndex++;
+            }
+            return headerLevel;
         }
     }
 }

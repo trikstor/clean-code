@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Markdown.Readers
 {
-    public interface IReadable
+    public interface IRead
     {
+        char Symbol { get; }
         Token Read(string input, int inputIndex);
     }
 }

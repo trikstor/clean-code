@@ -9,26 +9,31 @@ namespace Markdown
 {
     public class Token
     {
-        public Dictionary<string, string> TokenTypes
-            = new Dictionary<string, string>
-            {
-                    {"Header", "h1"},
-                    {"Bold" , "strong"},
-                    {"Italic" , "em"},
-                    {"Code", "code"},
-                    {"Horizontal", "hr"},
-                    {"Default", ""}
-            };
-
+        public Dictionary<string, string> TokenTypes { get; set; }
         public string Text { get; }
-        public string Type { get; set; }
+        public string Tag { get; set; }
         public int StartIndex { get; set; }
 
         public Token(string text, int stratIndex)
         {
+            TokenTypes = new Dictionary<string, string>
+            {
+                {"Header", "h"},
+                {"Bold" , "strong"},
+                {"Italic" , "em"},
+                {"Code", "code"},
+                {"Horizontal", "hr"},
+                {"Default", ""}
+            };
+
             Text = text;
-            Type = TokenTypes["Default"];
+            Tag = TokenTypes["Default"];
             StartIndex = stratIndex;
+        }
+
+        public void AddToTag(string str)
+        {
+            
         }
     }
 }

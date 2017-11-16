@@ -54,28 +54,36 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActiveElements\MarkdownSymbols.cs" />
-    <Compile Include="TokenReaders\TokenReader.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="TokenReaders\CommonReaderEnviron.cs" />
     <Compile Include="Md.cs" />
     <Compile Include="TokenReaders\Headers.cs" />
     <Compile Include="TokenReaders\Horizontal.cs" />
-    <Compile Include="TokenReaders\IReadable.cs" />
+    <Compile Include="TokenReaders\IRead.cs" />
     <Compile Include="TokenReaders\Quotes.cs" />
     <Compile Include="TokenReaders\Underline.cs" />
     <Compile Include="AbstractReader.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Tests\HeadersShould.cs" />
     <Compile Include="Tests\MdShould.cs" />
-    <Compile Include="Tests\UntillStopSymbolShould.cs" />
-    <Compile Include="Tests\TokenToHTMLShould.cs" />
+    <Compile Include="Tests\AbstractReaderShould.cs" />
+    <Compile Include="Tests\HtmlConvertor.cs" />
     <Compile Include="Token.cs" />
-    <Compile Include="TokenToHTML.cs" />
+    <Compile Include="HtmlConvertor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Properties\" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

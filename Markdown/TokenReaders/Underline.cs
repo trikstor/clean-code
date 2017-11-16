@@ -1,20 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Markdown.ActiveElements;
+﻿using System.Collections.Generic;
 using Markdown.Readers;
+using Markdown.TokenReaders;
 
 namespace Markdown.Parsers
 {
-    public class Underline : IReadable
+    public class Underline : CommonReaderEnviron, IRead
     {
-        private readonly Md singleMd = new Md(
-            new List<TokenReader>
-        {
-        });
-
+        public char Symbol { get; } = MarkdownSymbols.Emphasis;
         public Token Read(string input, int inputIndex)
         {
             if (inputIndex + 1 > input.Length - 1)
@@ -33,64 +25,45 @@ namespace Markdown.Parsers
         private Token ReadSingle(string input, int inputIndex)
         {
             var startIndex = inputIndex;
-            var startToken = AbstractReader.Read(input, inputIndex + 1, MarkdownSymbols.Emphasis);
-            if (startToken.StartIndex + startToken.Text.Length == input.Length || 
-                input[inputIndex + 1] == MarkdownSymbols.Space)
-                return new Token('_' + startToken.Text, inputIndex);
-            startToken.StartIndex += 1;
-
-            var tempInput = inputIndex;
+            if (input[inputIndex + 1] == MarkdownSymbols.Space)
+                return GetTokenWithoutTags(input, startIndex, MarkdownSymbols.Emphasis, 1);
             inputIndex += 1;
+
             inputIndex = GetTagIndexWithTrueEnviron(input, inputIndex, CheckSingleTagEnviron);
-            if (inputIndex == -1) return 
-                    new Token(MarkdownSymbols.Emphasis + startToken.Text, tempInput);
+            if (inputIndex == -1)
+                return GetTokenWithoutTags(input, startIndex, MarkdownSymbols.Emphasis, 1);
 
-            var resToken = new Token(input.Substring(startToken.StartIndex - 1, inputIndex - startToken.StartIndex + 1), tempInput + 2);
+            var fullToken = AbstractReader.Read(input, startIndex + 1, MarkdownSymbols.Emphasis);
+            var resToken = new Token(input.Substring(fullToken.StartIndex, inputIndex - fullToken.StartIndex), startIndex + 2);
             if (resToken.Text[resToken.Text.Length - 1] == MarkdownSymbols.Space)
-                return new Token('_' + startToken.Text, startIndex);
+                return new Token(MarkdownSymbols.Emphasis + fullToken.Text, startIndex);
 
-            var newStr = singleMd.RenderToHtml(resToken.Text);
-            var token = new Token(newStr, tempInput + 2);
-            token.Type = token.TokenTypes["Italic"];
+            var newStr = new Md(new List<IRead>()).RenderToHtml(resToken.Text);
+            var token = new Token(newStr, startIndex + 2);
+            token.Tag = token.TokenTypes["Italic"];
             return token;
         }
 
         private Token ReadDouble(string input, int inputIndex)
         {
-            var startInput = inputIndex;
-            var startToken = AbstractReader.Read(input, inputIndex + 2, MarkdownSymbols.Emphasis);
+            var startIndex = inputIndex;
             inputIndex += 2;
+
             inputIndex = GetTagIndexWithTrueEnviron(input, inputIndex, CheckDoubleTagEnviron);
             if (inputIndex == -1)
-                return new Token("__" + startToken.Text, startInput);
+                return GetTokenWithoutTags(input, 0, MarkdownSymbols.Emphasis, 2);
 
-            var resToken = new Token(input.Substring(startToken.StartIndex,
-                inputIndex - startToken.StartIndex), startInput + 4);
+            var resToken = new Token(input.Substring(startIndex + 2,
+                inputIndex - startIndex - 2), startIndex + 4);
             var newStr = new Md().RenderToHtml(resToken.Text);
             var token = new Token(newStr, resToken.StartIndex);
-            token.Type = token.TokenTypes["Bold"];
+            token.Tag = token.TokenTypes["Bold"];
             return token;
-        }
-
-        private delegate bool EnvironChecker(string input, int inputIndex);
-
-        private int GetTagIndexWithTrueEnviron(string input, int inputIndex, EnvironChecker checker)
-        {
-            var found = false;
-            for (; inputIndex < input.Length; inputIndex++)
-            {
-                if (!checker(input, inputIndex)) continue;
-                found = true;
-                break;
-            }
-            if (found)
-                return inputIndex;
-            return -1;
         }
 
         private bool CheckSingleTagEnviron(string input, int inputIndex)
         {
-            return (inputIndex + 1 != input.Length && input[inputIndex] == '_' &&
+            return (inputIndex == input.Length || inputIndex + 1 != input.Length && input[inputIndex] == '_' &&
                     input[inputIndex + 1] != '_' && input[inputIndex - 1] != '_') ||
                    (inputIndex + 1 == input.Length && input[inputIndex] == '_' &&
                     input[inputIndex - 1] != '_');

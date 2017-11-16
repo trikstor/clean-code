@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -11,7 +12,7 @@ namespace Markdown
 	{
 		static void Main(string[] args)
 		{
-		    Console.WriteLine(new Md().RenderToHtml("``te`wo``"));
+            Console.WriteLine(new Md().RenderToHtml("``test`word``"));
 		    Console.ReadLine();
 		}
 	}

@@ -1,42 +1,38 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using FluentAssertions;
-using Markdown.ActiveElements;
 using Markdown.Parsers;
 using Markdown.Readers;
 using Markdown.TokenReaders;
-using NUnit.Framework;
 
 namespace Markdown
 {
     public class Md
     {
-        private Dictionary<char, IReadable> TokenReaders { get; }
+        private Dictionary<char, IRead> TokenReaders { get; }
         private List<char> CurrMdSymbols { get; }
 
-        public Md(List<TokenReader> tokenReaders)
+        public Md(List<IRead> tokenReaders)
         {
-            TokenReaders = tokenReaders.ToDictionary(x => x.Symbol, x => x.Reader);
+            TokenReaders = tokenReaders.ToDictionary(x => x.Symbol, x => x);
             CurrMdSymbols = tokenReaders.Select(x => x.Symbol).ToList();
         }
 
         public Md()
         {
-            var tokenReaders = new List<TokenReader>
+            var tokenReaders = new List<IRead>
             {
-                new TokenReader(new Headers(), MarkdownSymbols.Header),
-                new TokenReader(new Underline(), MarkdownSymbols.Emphasis),
-                new TokenReader(new Horizontal(), MarkdownSymbols.Asterisk),
-                new TokenReader(new Quotes(), MarkdownSymbols.Quote)
+                new Headers(),
+                new Underline(),
+                new Horizontal(),
+                new Quotes()
             };
+            TokenReaders = tokenReaders.ToDictionary(x => x.Symbol, x => x);
             CurrMdSymbols = tokenReaders.Select(x => x.Symbol).ToList();
-            TokenReaders = tokenReaders.ToDictionary(x => x.Symbol, x => x.Reader);
         }
 
         public string RenderToHtml(string markdown)
         {
-            var html = new TokenToHTML();
-            var res = MarkdownToTokens(markdown).Select(token => html.Convert(token)).Select(token => token.Text);
+            var res = MarkdownToTokens(markdown).Select(HtmlConvertor.Convert);
             return string.Join("", res);
         }
 
