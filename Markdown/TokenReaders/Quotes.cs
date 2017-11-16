@@ -7,16 +7,28 @@ namespace Markdown.TokenReaders
     {
         public Token Read(string input, int inputIndex)
         {
+            var found = false;
             if (inputIndex + 1 <= input.Length - 1 && 
                 input[inputIndex + 1] == MarkdownSymbols.Quote)
             {
-                var token = AbstractReader.Read(input, inputIndex + 2, MarkdownSymbols.Quote);
-                if (input[token.StartIndex + token.Text.Length] == MarkdownSymbols.Quote)
+                inputIndex += 2;
+                var startIndex = inputIndex;
+                for (; inputIndex < input.Length - 1; inputIndex++)
                 {
-                    token.Type = Token.TokenType.Code;
+                    if (input[inputIndex] == MarkdownSymbols.Quote && input[inputIndex + 1] == MarkdownSymbols.Quote)
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+                if (found)
+                {
+                    var token = new Token(input.Substring(startIndex, inputIndex - startIndex), startIndex);
+                    token.Type = token.TokenTypes["Code"];
                     return token;
                 }
             }
+            inputIndex++;
             return AbstractReader.Read(input, inputIndex, MarkdownSymbols.AllSymbols);
         }
     }

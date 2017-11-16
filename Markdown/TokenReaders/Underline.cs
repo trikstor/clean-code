@@ -50,7 +50,9 @@ namespace Markdown.Parsers
                 return new Token('_' + startToken.Text, startIndex);
 
             var newStr = singleMd.RenderToHtml(resToken.Text);
-            return new Token(newStr, tempInput + 2) {Type = Token.TokenType.Italic};
+            var token = new Token(newStr, tempInput + 2);
+            token.Type = token.TokenTypes["Italic"];
+            return token;
         }
 
         private Token ReadDouble(string input, int inputIndex)
@@ -65,7 +67,9 @@ namespace Markdown.Parsers
             var resToken = new Token(input.Substring(startToken.StartIndex,
                 inputIndex - startToken.StartIndex), startInput + 4);
             var newStr = new Md().RenderToHtml(resToken.Text);
-            return new Token(newStr, resToken.StartIndex) { Type = Token.TokenType.Bold };
+            var token = new Token(newStr, resToken.StartIndex);
+            token.Type = token.TokenTypes["Bold"];
+            return token;
         }
 
         private delegate bool EnvironChecker(string input, int inputIndex);

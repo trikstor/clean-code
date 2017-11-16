@@ -3,29 +3,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Markdown.Parsers;
 
 namespace Markdown
 {
     public class Token
     {
-        public enum TokenType
-        {
-            Header,
-            Bold,
-            Italic,
-            Code,
-            Horizontal,
-            Default
-        }
+        public Dictionary<string, string> TokenTypes
+            = new Dictionary<string, string>
+            {
+                    {"Header", "h1"},
+                    {"Bold" , "strong"},
+                    {"Italic" , "em"},
+                    {"Code", "code"},
+                    {"Horizontal", "hr"},
+                    {"Default", ""}
+            };
 
         public string Text { get; }
-        public TokenType Type { get; set; }
+        public string Type { get; set; }
         public int StartIndex { get; set; }
 
         public Token(string text, int stratIndex)
         {
             Text = text;
-            Type = TokenType.Default;
+            Type = TokenTypes["Default"];
             StartIndex = stratIndex;
         }
     }

@@ -7,29 +7,15 @@ using static Markdown.Token;
 
 namespace Markdown
 {
-    public class TokenToHTML
+    public static class TokenToHTML
     {
-        private Dictionary<TokenType, string> TokenTypeToTag { get; }
 
-        public TokenToHTML()
+        public static Token Convert(Token token)
         {
-            TokenTypeToTag = new Dictionary<TokenType, string>
-            {
-                {TokenType.Bold, "strong"},
-                {TokenType.Italic, "em"},
-                {TokenType.Header, "h1"},
-                {TokenType.Horizontal, "hr"},
-                {TokenType.Code, "code"},
-                {TokenType.Default, "" }
-            };
-        }
-
-        public Token Convert(Token token)
-        {
-            if (token.Type == TokenType.Default)
+            if (token.Type == "Default")
                 return token;
-            var tagName = TokenTypeToTag[token.Type];
-            if(token.Type == TokenType.Horizontal)
+            var tagName = token.TokenTypes[token.Type];
+            if(token.Type == "Horizontal")
                 return new Token($"<{tagName}/>", token.StartIndex);
             return new Token($"<{tagName}>{token.Text}</{tagName}>", token.StartIndex);
         }

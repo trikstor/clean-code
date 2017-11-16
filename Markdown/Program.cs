@@ -11,7 +11,7 @@ namespace Markdown
 	{
 		static void Main(string[] args)
 		{
-		    Console.WriteLine(new Md().RenderToHtml("``test`word``"));
+		    Console.WriteLine(new Md().RenderToHtml("``te`wo``"));
 		    Console.ReadLine();
 		}
 	}
