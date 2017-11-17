@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.Diagnostics;
+using System.IO;
 using NUnit.Framework;
 using FluentAssertions;
 
@@ -45,11 +47,18 @@ namespace Markdown.Tests
                 md = new Md();
             }
 
-            [Test, Timeout(12)]
+            [Test, Timeout(100)]
             public void CheckTime()
             {
                 var testStrings = TakeStringsFromFileWithName("testStrings2000");
-                md.RenderToHtml(testStrings);
+                var stopWatch = new Stopwatch();
+                for (var counter = 0; counter < 10; counter++)
+                {
+                    stopWatch.Start();
+                    md.RenderToHtml(testStrings);
+                    stopWatch.Stop();
+                }
+                (stopWatch.Elapsed.Milliseconds).Should().BeLessThan(10);
             }
 
             private string TakeStringsFromFileWithName(string fileName)
