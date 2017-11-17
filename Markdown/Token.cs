@@ -1,39 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Markdown.Parsers;
-
+﻿
 namespace Markdown
 {
     public class Token
     {
-        public Dictionary<string, string> TokenTypes { get; set; }
         public string Text { get; }
-        public string Tag { get; set; }
-        public int StartIndex { get; set; }
+        public TokenType BlockTag { get; set; }
+        public bool BlockOpen { get; set; }
+        public bool BlockClose { get; set; }
+        public TokenType Tag { get; set; }
+        public int TagLevel { get; set; }
+        public int StartIndex { get; set; } 
 
         public Token(string text, int stratIndex)
         {
-            TokenTypes = new Dictionary<string, string>
-            {
-                {"Header", "h"},
-                {"Bold" , "strong"},
-                {"Italic" , "em"},
-                {"Code", "code"},
-                {"Horizontal", "hr"},
-                {"Default", ""}
-            };
-
             Text = text;
-            Tag = TokenTypes["Default"];
+            BlockTag = TokenType.Default;
+            BlockOpen = false;
+            BlockClose = false;
+            Tag = TokenType.Default;
             StartIndex = stratIndex;
         }
 
-        public void AddToTag(string str)
+        public Token(string text, int stratIndex, bool blockOpen, bool blockClose)
         {
-            
+            Text = text;
+            BlockTag = TokenType.Default;
+            BlockOpen = blockOpen;
+            BlockClose = false;
+            Tag = TokenType.Default;
+            StartIndex = stratIndex;
         }
     }
 }

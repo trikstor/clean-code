@@ -1,22 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
-using Markdown.Readers;
-
-namespace Markdown.Parsers
+﻿
+namespace Markdown.TokenReaders
 {
-    public class Headers : IRead
+    public class HeadersReader : IReader
     {
         public char Symbol { get; } = MarkdownSymbols.Header;
         public Token Read(string input, int inputIndex)
         {
             var headerLevel = GetHeaderLevel(input, inputIndex);
             var headerToken = AbstractReader.Read(input, inputIndex + headerLevel, '\n');
-            headerToken.TokenTypes["Header"] += headerLevel.ToString();
-            headerToken.Tag = headerToken.TokenTypes["Header"];
+            headerToken.Tag = TokenType.Header;
+            headerToken.TagLevel = headerLevel;
             return headerToken;
         }
 

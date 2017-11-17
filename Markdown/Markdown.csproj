@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActiveElements\MarkdownSymbols.cs" />
+    <Compile Include="ITokenConverter.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -61,19 +62,20 @@
     </Compile>
     <Compile Include="TokenReaders\CommonReaderEnviron.cs" />
     <Compile Include="Md.cs" />
-    <Compile Include="TokenReaders\Headers.cs" />
-    <Compile Include="TokenReaders\Horizontal.cs" />
-    <Compile Include="TokenReaders\IRead.cs" />
-    <Compile Include="TokenReaders\Quotes.cs" />
-    <Compile Include="TokenReaders\Underline.cs" />
-    <Compile Include="AbstractReader.cs" />
+    <Compile Include="TokenReaders\HeadersReader.cs" />
+    <Compile Include="TokenReaders\HorizontalDelimiterReader.cs" />
+    <Compile Include="TokenReaders\IReader.cs" />
+    <Compile Include="TokenReaders\QuotesReader.cs" />
+    <Compile Include="TokenReaders\UnderlineReader.cs" />
+    <Compile Include="TokenReaders\AbstractReader.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Tests\HeadersShould.cs" />
+    <Compile Include="Tests\HeadersReaderShould.cs" />
     <Compile Include="Tests\MdShould.cs" />
     <Compile Include="Tests\AbstractReaderShould.cs" />
-    <Compile Include="Tests\HtmlConvertor.cs" />
+    <Compile Include="Tests\HtmlConvertorShould.cs" />
     <Compile Include="Token.cs" />
     <Compile Include="HtmlConvertor.cs" />
+    <Compile Include="TokenType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

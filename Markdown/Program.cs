@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Markdown
 {
@@ -12,7 +6,7 @@ namespace Markdown
 	{
 		static void Main(string[] args)
 		{
-            Console.WriteLine(new Md().RenderToHtml("``test`word``"));
+            Console.WriteLine(new Md().RenderToHtml("__aaa__"));
 		    Console.ReadLine();
 		}
 	}

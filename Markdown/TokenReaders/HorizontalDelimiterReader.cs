@@ -1,22 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Markdown.Readers;
-
-namespace Markdown.Parsers
+﻿
+namespace Markdown.TokenReaders
 {
-    public class Horizontal : IRead
+    public class HorizontalDelimiterReader : IReader
     {
         public char Symbol { get; } = MarkdownSymbols.Asterisk;
         public Token Read(string input, int inputIndex)
         {
-            var tt = input[inputIndex + 1];
             if (CheckFullSymbol(input, inputIndex))
             {
                 var token = AbstractReader.Read(input, inputIndex + 3, '\n');
-                token.Tag = token.TokenTypes["Horizontal"];
+                token.Tag = TokenType.Horizontal;
                 return token;
             }
 

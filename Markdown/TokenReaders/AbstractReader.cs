@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace Markdown.Parsers
+namespace Markdown.TokenReaders
 {
     public static class AbstractReader
     {
         public static Token Read(string input, int inputIndex, char stopSymbol)
         {
-            var res = "";
+            var result = new StringBuilder();
             var deleted = 0;
             var startIndex = inputIndex;
             for (; inputIndex < input.Length; inputIndex++)
@@ -22,14 +19,14 @@ namespace Markdown.Parsers
                     inputIndex += 1;
                     deleted++;
                 }
-                res += input[inputIndex];
+                result.Append(input[inputIndex]);
             }
-            return new Token(res, startIndex + deleted);
+            return new Token(result.ToString(), startIndex + deleted);
         }
 
         public static Token Read(string input, int inputIndex, List<char> stopSymbols)
         {
-            var res = "";
+            var result = new StringBuilder();
             var deleted = 0;
             var startIndex = inputIndex;
             for (; inputIndex < input.Length; inputIndex++)
@@ -41,9 +38,9 @@ namespace Markdown.Parsers
                     inputIndex += 1;
                     deleted++;
                 }
-                res += input[inputIndex];
+                result.Append(input[inputIndex]);
             }
-            return new Token(res, startIndex + deleted);
+            return new Token(result.ToString(), startIndex + deleted);
         }
     }
 }

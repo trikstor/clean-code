@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
-using Markdown.Readers;
-using Markdown.TokenReaders;
 
-namespace Markdown.Parsers
+namespace Markdown.TokenReaders
 {
-    public class Underline : CommonReaderEnviron, IRead
+    public class UnderlineReader : CommonReaderEnviron, IReader
     {
         public char Symbol { get; } = MarkdownSymbols.Emphasis;
         public Token Read(string input, int inputIndex)
@@ -38,9 +36,8 @@ namespace Markdown.Parsers
             if (resToken.Text[resToken.Text.Length - 1] == MarkdownSymbols.Space)
                 return new Token(MarkdownSymbols.Emphasis + fullToken.Text, startIndex);
 
-            var newStr = new Md(new List<IRead>()).RenderToHtml(resToken.Text);
-            var token = new Token(newStr, startIndex + 2);
-            token.Tag = token.TokenTypes["Italic"];
+            var token = new Token(resToken.Text, startIndex + 2);
+            token.Tag = TokenType.Italic;
             return token;
         }
 
@@ -55,9 +52,8 @@ namespace Markdown.Parsers
 
             var resToken = new Token(input.Substring(startIndex + 2,
                 inputIndex - startIndex - 2), startIndex + 4);
-            var newStr = new Md().RenderToHtml(resToken.Text);
-            var token = new Token(newStr, resToken.StartIndex);
-            token.Tag = token.TokenTypes["Bold"];
+            var token = new Token(resToken.Text, resToken.StartIndex, true, true);
+            token.BlockTag = TokenType.Bold;
             return token;
         }
 

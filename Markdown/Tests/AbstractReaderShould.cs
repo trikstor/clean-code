@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FluentAssertions;
-using Markdown.Parsers;
+﻿using FluentAssertions;
+using Markdown.TokenReaders;
 using NUnit.Framework;
-using NUnit.Framework.Internal;
 
 namespace Markdown.Tests
 {

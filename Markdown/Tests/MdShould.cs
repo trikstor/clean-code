@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Reflection;
+﻿using System.IO;
 using NUnit.Framework;
 using FluentAssertions;
 
@@ -45,14 +43,23 @@ namespace Markdown.Tests
             public void SetUp()
             {
                 md = new Md();
-                testStrings = TakeStringsFromFile(
-                    "C:\\Users\\Антон\\Desktop\\clean-code\\Markdown\\Tests\\testStrings2000.txt");
             }
 
-            [Test, Timeout(11)]
+            [Test, Timeout(12)]
             public void CheckTime()
             {
+                var testStrings = TakeStringsFromFileWithName("testStrings2000");
                 md.RenderToHtml(testStrings);
+            }
+
+            private string TakeStringsFromFileWithName(string fileName)
+            {
+                var context = TestContext.CurrentContext;
+                var combine = Path.Combine(
+                    context.TestDirectory,
+                    fileName + ".txt"
+                );
+                return TakeStringsFromFile(combine);
             }
 
             private string TakeStringsFromFile(string path)
