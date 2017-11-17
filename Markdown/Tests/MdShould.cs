@@ -54,7 +54,7 @@ namespace Markdown.Tests
                 var stopWatch = new Stopwatch();
                 for (var counter = 0; counter < 10; counter++)
                 {
-                    stopWatch.Start();
+                    stopWatch.Restart();
                     md.RenderToHtml(testStrings);
                     stopWatch.Stop();
                 }
@@ -65,7 +65,7 @@ namespace Markdown.Tests
             {
                 var context = TestContext.CurrentContext;
                 var combine = Path.Combine(
-                    context.TestDirectory,
+                    Directory.GetParent(context.TestDirectory).Parent.FullName,
                     fileName + ".txt"
                 );
                 return TakeStringsFromFile(combine);
